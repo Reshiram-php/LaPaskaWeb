@@ -41,53 +41,53 @@ class AnimalesResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('especie_id')
-                ->label('Especie')
-                ->searchable()
-                ->preload()
-                ->Relationship('Especies','especie')
-                ->live()
-                ->required()
-                ->createOptionForm([
-                    Forms\Components\TextInput::make('especie')
-                        ->required(),
-                ]),
+                    ->label('Especie')
+                    ->searchable()
+                    ->preload()
+                    ->Relationship('Especies', 'especie')
+                    ->live()
+                    ->required()
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('especie')
+                            ->required(),
+                    ]),
                 Forms\Components\Select::make('raza_id')
-                ->label('Raza')
+                    ->label('Raza')
 
-                ->preload()
-                ->options(fn(Get $get): Collection => Razas::query()->where('especie_id',$get('especie_id'))->pluck('raza','id') )
-                ->disabled(fn($get) => $get('especie_id') === null)
-                ->createOptionForm(fn(Get $get)=>[
+                    ->preload()
+                    ->options(fn (Get $get): Collection => Razas::query()->where('especie_id', $get('especie_id'))->pluck('raza', 'id'))
+                    ->disabled(fn ($get) => $get('especie_id') === null)
+                    ->createOptionForm(fn (Get $get) => [
 
-                    TextInput::make('raza')->label('raza')->required()->required(),
+                        TextInput::make('raza')->label('raza')->required()->required(),
 
-                    Hidden::make('especie_id')->default($get('especie_id'))->required(),
-                ])
+                        Hidden::make('especie_id')->default($get('especie_id'))->required(),
+                    ])
 
-                ->createOptionUsing(function($data){
-                    $raza = new Razas();
-                    $raza->fill($data);
-                    $raza->save();
-                    return $raza->getKey();
-                })
+                    ->createOptionUsing(function ($data) {
+                        $raza = new Razas();
+                        $raza->fill($data);
+                        $raza->save();
+                        return $raza->getKey();
+                    })
 
 
-                ->required(),
+                    ->required(),
 
 
                 Forms\Components\Select::make('estado_id')
-                ->label('Estado')
-                ->Relationship('Estados','estado')
-                ->required(),
+                    ->label('Estado')
+                    ->Relationship('Estados', 'estado')
+                    ->required(),
 
                 Forms\Components\TextInput::make('nombre')
-                ->required()
-                ->maxLength(255),
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('sexo')
-                ->required()
-                ->maxLength(255),
-            Forms\Components\Toggle::make('castrado')
-                ->required(),
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\Toggle::make('castrado')
+                    ->required(),
                 Forms\Components\DatePicker::make('fecha_nacimiento')
                     ->required(),
                 Forms\Components\DatePicker::make('fecha_refugio')
@@ -98,8 +98,9 @@ class AnimalesResource extends Resource
                 Forms\Components\FileUpload::make('imagen')
 
                     ->image()
-                    ->imageEditor()
                     ->directory('animal-images')
+                    ->imageResizeTargetWidth('768')
+                    ->imageResizeTargetHeight('511')
                     ->required(),
             ]);
     }
@@ -170,5 +171,4 @@ class AnimalesResource extends Resource
             'edit' => Pages\EditAnimales::route('/{record}/edit'),
         ];
     }
-
 }

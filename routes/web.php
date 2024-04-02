@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
+});
+
+Route::get('/adopt',[WebController::class,'adoptindex' ]);
+Route::get('/adoptsingle', function () {
+    return view('adopt-single');
+});
+Route::get('/about', function () {
+    return view('about');
+});
+Route::get('/contact', function () {
+    return view('contact');
+});
+Route::get('/gallery', function () {
+    return view('gallery');
+});
+Route::get('/team', function () {
+    return view('team');
 });
