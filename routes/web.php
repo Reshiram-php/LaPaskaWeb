@@ -20,18 +20,15 @@ Route::get('/', function () {
 });
 
 Route::get('/adopt',[WebController::class,'adoptindex' ]);
-Route::get('/adoptsingle', function () {
-    return view('adopt-single');
-});
+Route::get('/adoptsingle/{id}',[WebController::class,'adoptsingleindex' ] );
+
 Route::get('/about', function () {
     return view('about');
 });
 Route::get('/contact', function () {
     return view('contact');
 });
-Route::get('/gallery', function () {
-    return view('gallery');
-});
+Route::get('/gallery' ,[WebController::class,'galleryindex' ] );
 Route::get('/team', function () {
     return view('team');
 });

@@ -55,15 +55,20 @@
             <div class="p-0 wrapper shadow rounded">
                <!-- image -->
                <div class="wrapper-hover">
-                  <a href="{{url("/adoptsingle")}}">
-                     <img loading="lazy" class="img-fluid" src={{ asset('storage/'.$a->imagen) }} alt="">
+                  <a href="{{url("/adoptsingle/".$a->id)}}">
+                     <img loading="lazy" class="img-fluid" src={{ asset('storage/'.$a->imagen[0]) }} alt="">
                   </a>
                </div>
                <!-- animal and gender -->
                <div class="pet-info">
                   <ul class="list-inline pt-4 pb-2 text-center">
-                     <li class="horse list-inline-item"></li>
+                     <li class="{{$a->icon}} list-inline-item"></li>
+                     @if ($a->sexo=="macho")
                      <li class="male list-inline-item"></li>
+                     @else
+                     <li class="female list-inline-item"></li>
+                     @endif
+
                   </ul>
                </div>
                <!-- description -->
@@ -72,8 +77,7 @@
                      <h3 class="h4">{{ $a->nombre }}</h3>
                      <span class="lead">2 años de edad</span>
                   </div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id tempus dolor, a vestibulum
-                     ipsum.</p>
+                  <p>Dale la oportunidad a {{ $a->nombre }} de ser feliz con una familia cariñosa </p>
                   <!-- button -->
                   <a class="btn btn-primary mb-2" href="{{url("/adoptsingle")}}">Mas información</a>
                </div>

@@ -17,7 +17,7 @@
    <link
       href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400;600;800&amp;family=Inter:wght@400;700&amp;display=swap"
       rel="stylesheet">
-   <link href="{{ asset("webassets/fonts/fontawesome/all.min.css")}}" rel="stylesheet">
+   <link href="{{ asset("webassets/fonts/fontawesome/css/all.min.css")}}" rel="stylesheet">
    <!-- Fav icons -->
    <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
    <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
@@ -84,12 +84,8 @@
                   </li>
                   <!-- menu item with dropdown-->
                   <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                        aria-expanded="false">Adopción</a>
-                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{url("/adopt")}}">Adopción gallery</a></li>
-                        <li><a class="dropdown-item" href="{{url("/adoptsingle")}}">Adopción Individual</a></li>
-                     </ul>
+                     <a class="nav-link " href="{{url("/adopt")}}" >Adopción</a>
+
                   </li>
                   <!-- menu item -->
                   <li class="nav-item">

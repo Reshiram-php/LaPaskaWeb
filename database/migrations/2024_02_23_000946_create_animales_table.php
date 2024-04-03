@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('animales', function (Blueprint $table) {
             $table->id();
-            $table->string('imagen');
+            $table->json('imagen');
             $table->string('nombre');
             $table->string('sexo');
             $table->boolean('castrado');
@@ -26,7 +26,6 @@ return new class extends Migration
             $table->foreign('raza_id')->references('id')->on('razas');
             $table->unsignedBigInteger('especie_id');
             $table->foreign('especie_id')->references('id')->on('especies');
-
             $table->timestamps();
         });
     }

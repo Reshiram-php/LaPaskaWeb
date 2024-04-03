@@ -10,6 +10,9 @@ class Animales extends Model
 {
     use HasFactory;
     protected $guarded=[];
+    protected $casts = [
+        'imagen' => 'array'
+        ];
     public function estados(): BelongsTo{
         return $this->belongsTo(Estados::class,'estado_id');
     }

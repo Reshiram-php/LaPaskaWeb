@@ -25,8 +25,16 @@ class RazasResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('especie_id')
-                ->Relationship('Especies','especie')
-                ->required(),
+                    ->label('Especie')
+                    ->searchable()
+                    ->preload()
+                    ->Relationship('Especies', 'especie')
+                    ->live()
+                    ->required()
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('especie')
+                            ->required(),
+                    ]),
                 Forms\Components\TextInput::make('raza')
                     ->required()
                     ->maxLength(255),
