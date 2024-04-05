@@ -54,7 +54,7 @@
           <!-- carousel-->
           <div class="slider-3 lightbox  mt-5 mb-5 g-3">
              <!-- image with lightbox-->
-             @foreach ($animal->imagen as $a )
+             @foreach (array_slice($animal->imagen,1) as $a )
              <div class="p-2">
                 <a href="{{ asset('storage/' . $a) }}" title="{{ $animal->nombre }}">
                     <img loading="lazy" src="{{ asset('storage/' . $a) }}" class="hover-border img-fluid rounded"

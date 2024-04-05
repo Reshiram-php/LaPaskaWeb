@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('alimentacions', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('animal_id');
-            $table->date('fecha_alimentacion');
-            $table->string('alimento');
-            $table->decimal('cantidad');
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('type');
+            $table->morphs('notifiable');
+            $table->json('data');
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('alimentacions');
+        Schema::dropIfExists('notifications');
     }
 };

@@ -6,6 +6,7 @@ use App\Filament\Resources\AnimalesResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
+
 class ListAnimales extends ListRecords
 {
     protected static string $resource = AnimalesResource::class;
@@ -13,7 +14,9 @@ class ListAnimales extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
+
             Actions\CreateAction::make(),
+
         ];
     }
 }

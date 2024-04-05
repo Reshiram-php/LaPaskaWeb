@@ -37,6 +37,16 @@ class VoluntariosResource extends Resource
                 Forms\Components\Textarea::make('direccion')
                     ->required()
                     ->columnSpanFull(),
+                    Forms\Components\TextInput::make('cargo')
+                    ->required()
+                    ->maxLength(255),
+                    Forms\Components\FileUpload::make('imagen')
+                    ->image()
+                    ->directory('team-images')
+                    ->imageResizeMode('cover')
+                    ->imageCropAspectRatio('3:2')
+                    ->imageResizeTargetWidth('300')
+                    ->imageResizeTargetHeight('200'),
             ]);
     }
 

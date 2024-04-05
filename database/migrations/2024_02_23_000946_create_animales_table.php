@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('sexo');
             $table->boolean('castrado');
-            $table->date('fecha_nacimiento')->nulleable();
+            $table->date('fecha_nacimiento');
             $table->date('fecha_refugio');
-            $table->string('descripcion')->nulleable();
+            $table->text('descripcion')->nulleable();
             $table->unsignedBigInteger('estado_id');
             $table->foreign('estado_id')->references('id')->on('estados');
             $table->unsignedBigInteger('raza_id');

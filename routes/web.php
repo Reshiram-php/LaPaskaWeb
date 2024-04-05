@@ -29,6 +29,6 @@ Route::get('/contact', function () {
     return view('contact');
 });
 Route::get('/gallery' ,[WebController::class,'galleryindex' ] );
-Route::get('/team', function () {
-    return view('team');
-});
+Route::get('/team',[WebController::class,'teamindex' ] );
+Route::post('/messagepost',[WebController::class,'messageContent' ] )->name('message.content');
+

@@ -9,6 +9,7 @@ use App\Filament\Resources\AnimalesResource\Pages\ListAnimales;
 use App\Filament\Resources\AnimalesResource\RelationManagers;
 use App\Models\Animales;
 use App\Models\Razas;
+use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
@@ -19,6 +20,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\BulkActionGroup;
@@ -32,6 +34,9 @@ use Guava\FilamentIconPicker\Forms\IconPicker;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Collection;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportAction;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
 
 class AnimalesResource extends Resource
 {
@@ -143,14 +148,28 @@ class AnimalesResource extends Resource
                 Forms\Components\Toggle::make('castrado')
                     ->required(),
                 Forms\Components\DatePicker::make('fecha_nacimiento')
-                    ->required(),
+                    ->format('d/m/Y')
+                    ->displayFormat('d/m/Y')
+                    ->required()
+                    ->reactive()
+                    ->minDate(now()->subYears(150))
+                    ->maxDate(now())
+                    ->afterStateUpdated(function (?string $state, ?string $old, Set $set) {
+                        return $set('fecha_refugio', Carbon::parse($state)->toDateTimeString());
+                    })
+                    ->closeOnDateSelection()
+                    ->native(false),
                 Forms\Components\DatePicker::make('fecha_refugio')
-                    ->required(),
-                Forms\Components\TextInput::make('descripcion')
+                    ->required()
+                    ->minDate(function (Forms\Get $get) {
+                        return \Carbon\Carbon::parse($get('fecha_nacimiento'));
+                    })
+                    ->closeOnDateSelection()
+                    ->native(false),
+                Forms\Components\Textarea::make('descripcion')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('imagen')
-
                     ->image()
                     ->directory('animal-images')
                     ->multiple()
@@ -206,6 +225,7 @@ class AnimalesResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
+
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
