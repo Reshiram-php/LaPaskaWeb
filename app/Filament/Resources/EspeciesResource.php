@@ -20,6 +20,7 @@ class EspeciesResource extends Resource
     protected static ?string $model = Especies::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Animales';
 
     public static function form(Form $form): Form
     {

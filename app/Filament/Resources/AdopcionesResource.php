@@ -26,6 +26,7 @@ class AdopcionesResource extends Resource
     protected static ?string $model = Adopciones::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Adopciones';
 
     public static function form(Form $form): Form
     {

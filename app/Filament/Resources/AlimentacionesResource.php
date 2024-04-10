@@ -25,6 +25,7 @@ class AlimentacionesResource extends Resource
     protected static ?string $model = Alimentaciones::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Cuidados';
 
     public static function form(Form $form): Form
     {

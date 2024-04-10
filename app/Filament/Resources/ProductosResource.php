@@ -2,43 +2,45 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\RazasResource\Pages;
-use App\Filament\Resources\RazasResource\RelationManagers;
-use App\Models\Razas;
+use App\Filament\Resources\ProductosResource\Pages;
+use App\Filament\Resources\ProductosResource\RelationManagers;
+use App\Models\Productos;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\Relationship;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class RazasResource extends Resource
+class ProductosResource extends Resource
 {
-    protected static ?string $model = Razas::class;
+    protected static ?string $model = Productos::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Animales';
+    protected static ?string $navigationGroup = 'Productos';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('especie_id')
-                    ->label('Especie')
-                    ->searchable()
-                    ->preload()
-                    ->Relationship('Especies', 'especie')
-                    ->live()
-                    ->required()
-                    ->createOptionForm([
-                        Forms\Components\TextInput::make('especie')
-                            ->required(),
-                    ]),
-                Forms\Components\TextInput::make('raza')
+                Forms\Components\TextInput::make('nombre')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('precio')
+                    ->required()
+                    ->numeric(),
+                    Forms\Components\FileUpload::make('imagen')
+                    ->image()
+                    ->directory('product-images')
+                    ->imageResizeMode('cover')
+                    ->imageCropAspectRatio('3:2')
+                    ->imageResizeTargetWidth('400')
+                    ->imageResizeTargetHeight('400')
+                    ->required(),
+                Forms\Components\Textarea::make('descripcion')
+                    ->required()
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -46,11 +48,12 @@ class RazasResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('Especies.especie')
-                    ->sortable()
+                Tables\Columns\TextColumn::make('nombre')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('raza')
-                ->sortable()
+                Tables\Columns\TextColumn::make('precio')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('imagen')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -84,9 +87,9 @@ class RazasResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListRazas::route('/'),
-            'create' => Pages\CreateRazas::route('/create'),
-            'edit' => Pages\EditRazas::route('/{record}/edit'),
+            'index' => Pages\ListProductos::route('/'),
+            'create' => Pages\CreateProductos::route('/create'),
+            'edit' => Pages\EditProductos::route('/{record}/edit'),
         ];
     }
 }

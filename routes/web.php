@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/',[WebController::class, 'homeindex'] );
 
 Route::get('/adopt',[WebController::class,'adoptindex' ]);
 Route::get('/adoptsingle/{id}',[WebController::class,'adoptsingleindex' ] );
@@ -30,5 +28,6 @@ Route::get('/contact', function () {
 });
 Route::get('/gallery' ,[WebController::class,'galleryindex' ] );
 Route::get('/team',[WebController::class,'teamindex' ] );
+Route::get('/product',[WebController::class,'productindex' ] );
 Route::post('/messagepost',[WebController::class,'messageContent' ] )->name('message.content');
 

@@ -1,5 +1,6 @@
 @extends('web.template')
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- /template-header --><!-- section carousel -->
     <section id="home-main" class="container-fluid p-0 position-relative">
         <!-- ken burns slideshow -->
@@ -386,164 +387,45 @@
         <!-- Carousel with 3 elements per view -->
         <div class="slider-3 mt-5">
             <!-- pet -->
-            <div class="dogs col-xl-4 col-md-6 mb-5 p-3">
-                <div class="p-0 wrapper shadow rounded">
-                    <!-- image -->
-                    <div class="wrapper-hover">
-                        <a href="{{url("/adoptsingle")}}">
-                            <img loading="lazy" class="img-fluid"
-                                src="{{ asset('webassets/img/adopt/adopt4.jpg') }}"alt="">
-                        </a>
-                    </div>
-                    <!-- animal and gender -->
-                    <div class="pet-info">
-                        <ul class="list-inline pt-4 pb-2 text-center">
-                            <li class="dog list-inline-item"></li>
-                            <li class="male list-inline-item"></li>
-                        </ul>
-                    </div>
-                    <!-- description -->
-                    <div class="p-4 pt-0 text-center adopt-wrapper">
-                        <div class="mb-3">
-                            <h3 class="h4">Jonas</h3>
-                            <span class="lead">5 años de edad</span>
+            @foreach ($animal as $a)
+                    <div class="{{ $a->especie_id }} col-xl-4 col-md-6 mb-5 p-3">
+                        <div class="p-0 wrapper shadow rounded">
+                            <!-- image -->
+                            <div class="wrapper-hover">
+                                <a href="{{ url("adoptsingle/" . $a->id) }}">
+                                    <img loading="lazy" class="img-fluid" src={{ asset('storage/' . $a->imagen[0]) }}
+                                        alt="">
+                                </a>
+                            </div>
+                            <!-- animal and gender -->
+                            <div class="pet-info">
+                                <ul class="list-inline pt-4 pb-2 text-center">
+                                    <li class="{{ $a->icon }} list-inline-item"></li>
+                                    @if ($a->sexo == 'macho')
+                                        <li class="male list-inline-item"></li>
+                                    @else
+                                        <li class="female list-inline-item"></li>
+                                    @endif
+
+                                </ul>
+                            </div>
+                            <!-- description -->
+                            <div class="p-4 pt-0 text-center adopt-wrapper">
+                                <div class="mb-3">
+                                    <h3 class="h4">{{ $a->nombre }}</h3>
+                                    <span class="lead">2 años de edad</span>
+                                </div>
+                                <p>Dale la oportunidad a {{ $a->nombre }} de ser feliz con una familia cariñosa </p>
+                                <!-- button -->
+                                <a class="btn btn-primary mb-2" href="{{ url("adoptsingle/" . $a->id) }}">Mas información</a>
+                            </div>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id tempus dolor, a vestibulum
-                            ipsum.
-                        </p>
-                        <!-- button -->
-                        <a class="btn btn-primary mb-2" href="{{url("/adoptsingle")}}">Más información</a>
                     </div>
-                </div>
-            </div>
-            <!-- /pet -->
-            <!-- pet -->
-            <div class="cats col-xl-4 col-md-6 mb-5 p-3">
-                <div class="p-0 wrapper shadow rounded">
-                    <!-- image -->
-                    <div class="wrapper-hover">
-                        <a href="{{url("/adoptsingle")}}">
-                            <img loading="lazy" class="img-fluid"
-                                src="{{ asset('webassets/img/adopt/adopt5.jpg') }}"alt="">
-                        </a>
-                    </div>
-                    <!-- animal and gender -->
-                    <div class="pet-info">
-                        <ul class="list-inline pt-4 pb-2 text-center">
-                            <li class="cat list-inline-item"></li>
-                            <li class="female list-inline-item"></li>
-                        </ul>
-                    </div>
-                    <!-- description -->
-                    <div class="p-4 pt-0 text-center adopt-wrapper">
-                        <div class="mb-3">
-                            <h3 class="h4">Muli & Tuli</h3>
-                            <span class="lead">2 Meses de edad</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id tempus dolor, a vestibulum
-                            ipsum.
-                        </p>
-                        <!-- button -->
-                        <a class="btn btn-primary mb-2" href="{{url("/adoptsingle")}}">Más información</a>
-                    </div>
-                </div>
-            </div>
-            <!-- /pet -->
-            <!-- pet -->
-            <div class="dogs col-xl-4 col-md-6 mb-5 p-3">
-                <div class="p-0 wrapper shadow rounded">
-                    <!-- image -->
-                    <div class="wrapper-hover">
-                        <a href="{{url("/adoptsingle")}}">
-                            <img loading="lazy" class="img-fluid"
-                                src="{{ asset('webassets/img/adopt/adopt6.jpg') }}"alt="">
-                        </a>
-                    </div>
-                    <!-- animal and gender -->
-                    <div class="pet-info">
-                        <ul class="list-inline pt-4 pb-2 text-center">
-                            <li class="dog list-inline-item"></li>
-                            <li class="male list-inline-item"></li>
-                        </ul>
-                    </div>
-                    <!-- description -->
-                    <div class="p-4 pt-0 text-center adopt-wrapper">
-                        <div class="mb-3">
-                            <h3 class="h4">Lucas</h3>
-                            <span class="lead">6 Meses de edad</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id tempus dolor, a vestibulum
-                            ipsum.
-                        </p>
-                        <!-- button -->
-                        <a class="btn btn-primary mb-2" href="{{url("/adoptsingle")}}">Más información</a>
-                    </div>
-                </div>
-            </div>
-            <!-- /pet -->
-            <!-- pet -->
-            <div class="dogs col-xl-4 col-md-6 mb-5 p-3">
-                <div class="p-0 wrapper shadow rounded">
-                    <!-- image -->
-                    <div class="wrapper-hover">
-                        <a href="{{url("/adoptsingle")}}">
-                            <img loading="lazy" class="img-fluid"
-                                src="{{ asset('webassets/img/adopt/adopt7.jpg') }}"alt="">
-                        </a>
-                    </div>
-                    <!-- animal and gender -->
-                    <div class="pet-info">
-                        <ul class="list-inline pt-4 pb-2 text-center">
-                            <li class="dog list-inline-item"></li>
-                            <li class="female list-inline-item"></li>
-                        </ul>
-                    </div>
-                    <!-- description -->
-                    <div class="p-4 pt-0 text-center adopt-wrapper">
-                        <div class="mb-3">
-                            <h3 class="h4">Manu & Lila</h3>
-                            <span class="lead">3 años de edad</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id tempus dolor, a vestibulum
-                            ipsum.
-                        </p>
-                        <!-- button -->
-                        <a class="btn btn-primary mb-2" href="{{url("/adoptsingle")}}">Más información</a>
-                    </div>
-                </div>
-            </div>
-            <!-- /pet -->
-            <!-- pet -->
-            <div class="cats col-xl-4 col-md-6 mb-5 p-3">
-                <div class="p-0 wrapper shadow rounded">
-                    <!-- image -->
-                    <div class="wrapper-hover">
-                        <a href="{{url("/adoptsingle")}}">
-                            <img loading="lazy" class="img-fluid"
-                                src="{{ asset('webassets/img/adopt/adopt8.jpg') }}"alt="">
-                        </a>
-                    </div>
-                    <!-- animal and gender -->
-                    <div class="pet-info">
-                        <ul class="list-inline pt-4 pb-2 text-center">
-                            <li class="cat list-inline-item"></li>
-                            <li class="male list-inline-item"></li>
-                        </ul>
-                    </div>
-                    <!-- description -->
-                    <div class="p-4 pt-0 text-center adopt-wrapper">
-                        <div class="mb-3">
-                            <h3 class="h4">Jonas</h3>
-                            <span class="lead">9 años de edad</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id tempus dolor, a vestibulum
-                            ipsum.
-                        </p>
-                        <!-- button -->
-                        <a class="btn btn-primary mb-2" href="{{url("/adoptsingle")}}">Más información</a>
-                    </div>
-                </div>
-            </div>
+                @endforeach
+
+
+
+
             <!-- /pet -->
         </div>
         <!-- /slider-->
@@ -565,7 +447,7 @@
                     <div class="col-xl-4 pb-2 pb-xl-0" data-aos="zoom-in">
                         <div class="counter">
                             <!-- insert your final value on data-count= -->
-                            <div class="counter-value plus" data-count="0">0</div>
+                            <div class="counter-value plus" data-count="{{ $aconteo }}">{{ $aconteo }}</div>
                             <p class="title">Mascotas adoptadas</p>
                         </div>
                         <!-- /counter -->
@@ -779,6 +661,14 @@
                     <!-- form field -->
                     <label for="email">Dirección de correo electrónico:</label>
                     <input type="email" class="form-control mb-3 mt-2" name="email" id="email" required>
+                    <label for="option">Asunto:</label>
+                    <select class="form-control mb-3 mt-2" name="option" id="option" required>
+                        <option disabled selected value="">seleccione: </option>
+                        <option value="Adopción de Mascotas">adopción de mascotas</option>
+                        <option value="Productos y pagos">productos y pagos</option>
+                        <option value="Donaciones y Caridad">donaciones</option>
+                        <option value="Voluntariado">voluntariado</option>
+                    </select>
                     <!-- form field -->
                     <label for="message">Mensaje:</label>
                     <textarea class="form-control mt-2" name="message" id="message" rows="5" cols="20" required></textarea>

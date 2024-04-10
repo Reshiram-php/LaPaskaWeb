@@ -43,6 +43,7 @@ class AnimalesResource extends Resource
     protected static ?string $model = Animales::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Animales';
 
     public static function form(Form $form): Form
     {

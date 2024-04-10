@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
+use Filament\Facades\Filament;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,5 +25,12 @@ class AppServiceProvider extends ServiceProvider
             $switch
                 ->locales(['es','en','fr']); // also accepts a closure
         });
+        Filament::registerNavigationGroups([
+            'Animales',
+            'Adopciones',
+            'Cuidados',
+            'Donaciones',
+            'Productos',
+        ]);
     }
 }

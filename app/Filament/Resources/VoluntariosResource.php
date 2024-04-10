@@ -18,6 +18,7 @@ class VoluntariosResource extends Resource
     protected static ?string $model = Voluntarios::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Voluntarios';
 
     public static function form(Form $form): Form
     {
