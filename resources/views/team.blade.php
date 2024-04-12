@@ -72,21 +72,24 @@
                                     <span class="lead">{{ $v->cargo }}</span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
                 @endforeach
 
                 <!-- /padding -->
             </div>
             <!-- /team-item -->
         </div>
-        <!-- /team member ends -->
-        <!-- team member -->
+    </div>
+    <!-- /team member ends -->
+    <!-- team member -->
 
-        <!-- /team member ends -->
+    <!-- /team member ends -->
 
-        <!-- /page-->
-        <!-- Go To Top Link -->
-        <div class="col-lg-12 text-center page-scroll">
-            <a href="#top" class="back-to-top"><i class="fa fa-angle-up"></i></a>
-        </div>
-        <!--/page-scroll-->
-    @endsection
+    <!-- /page-->
+    <!-- Go To Top Link -->
+    <div class="col-lg-12 text-center page-scroll">
+        <a href="#top" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+    </div>
+    <!--/page-scroll-->
+@endsection

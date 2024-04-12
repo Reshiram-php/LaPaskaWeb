@@ -91,12 +91,18 @@
                   <li class="nav-item">
                      <a class="nav-link" href="{{url("/team")}}">Equipo</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{url("/product")}}">Productos</a>
+                 </li>
                   <!-- menu item with dropdown-->
 
                   <!-- menu item -->
                   <li class="nav-item">
                      <a class="nav-link" href="{{url("/contact")}}">Contáctanos</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{url("/admin")}}">Loguéate</a>
+                 </li>
                   <!-- menu item -->
 
                </ul>

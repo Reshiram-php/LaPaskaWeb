@@ -79,7 +79,7 @@
                             <div class="p-4 pt-0 text-center adopt-wrapper">
                                 <div class="mb-3">
                                     <h3 class="h4">{{ $a->nombre }}</h3>
-                                    <span class="lead">2 años de edad</span>
+                                    <span class="lead">{{ \Carbon\Carbon::parse($a->fecha_nacimiento)->diff(\Carbon\Carbon::now())->format('%y años, %m meses y %d días'); }}</span>
                                 </div>
                                 <p>Dale la oportunidad a {{ $a->nombre }} de ser feliz con una familia cariñosa </p>
                                 <!-- button -->

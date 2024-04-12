@@ -23,6 +23,7 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
@@ -186,6 +187,11 @@ class AnimalesResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id')
+                ->numeric()
+                ->sortable(),
+                Tables\Columns\TextColumn::make('nombre')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('Estados.estado')
                     ->numeric()
                     ->sortable(),
@@ -195,10 +201,6 @@ class AnimalesResource extends Resource
                 Tables\Columns\TextColumn::make('Especies.especie')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\ImageColumn::make('imagen')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('nombre')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('sexo')
                     ->searchable(),
                 Tables\Columns\IconColumn::make('castrado')
@@ -209,8 +211,6 @@ class AnimalesResource extends Resource
                 Tables\Columns\TextColumn::make('fecha_refugio')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('descripcion')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -225,6 +225,8 @@ class AnimalesResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Action::make('pdf')
+                ->icon('heroicon-o-arrow-down-tray')->url(fn(Animales $record)=>route('animal.report',$record))->openUrlInNewTab(),
             ])
 
             ->bulkActions([

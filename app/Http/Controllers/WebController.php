@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Animales;
 use App\Models\Especies;
 use App\Models\Productos;
+use App\Models\User;
 use App\Models\Voluntarios;
 use Faker\Core\File;
 use Filament\Notifications\Notification;
@@ -15,7 +16,7 @@ use Illuminate\Http\Request;
 class WebController extends Controller
 {
     public function homeindex(){
-        $animal = Animales::join('especies', 'especies.id', '=', 'animales.especie_id')->where('estado_id', 1)->take(4)->get(['animales.id','especie_id', 'imagen', 'icon', 'nombre', 'sexo']);
+        $animal = Animales::join('especies', 'especies.id', '=', 'animales.especie_id')->where('estado_id', 1)->take(4)->get(['animales.id','especie_id','fecha_nacimiento', 'imagen', 'icon', 'nombre', 'sexo']);
         $aconteo= Animales::where('estado_id',2)->count();
         $voluntario = Voluntarios::take(3)->get();
         return view('home',compact('animal','voluntario','aconteo'));
@@ -23,7 +24,7 @@ class WebController extends Controller
 
     public function adoptindex()
     {
-        $animal = Animales::join('especies', 'especies.id', '=', 'animales.especie_id')->where('estado_id', 1)->get(['animales.id','especie_id', 'imagen', 'icon', 'nombre', 'sexo']);
+        $animal = Animales::join('especies', 'especies.id', '=', 'animales.especie_id')->where('estado_id', 1)->get(['animales.id','especie_id','fecha_nacimiento', 'imagen', 'icon', 'nombre', 'sexo']);
         $especie = Especies::get();
         return view('adopt', compact('animal', 'especie'));
     }
@@ -56,10 +57,12 @@ class WebController extends Controller
     public function messageContent(Request $request)
     {
         if ($request->ajax()) {
+
+            $recipient = User::all();
             Notification::make()
                 ->title($request->option)
                 ->body('de: '.$request->name.'<br>'.'correo: '.$request->email.'<br>'.$request->message.'')
-                ->sendToDatabase(auth()->user());
+                ->sendToDatabase($recipient);
             return 0;
         }
     }

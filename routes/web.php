@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PDFcontroller;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,4 +31,5 @@ Route::get('/gallery' ,[WebController::class,'galleryindex' ] );
 Route::get('/team',[WebController::class,'teamindex' ] );
 Route::get('/product',[WebController::class,'productindex' ] );
 Route::post('/messagepost',[WebController::class,'messageContent' ] )->name('message.content');
+Route::get('/animalreport/{id}',[PDFcontroller::class,'animalreport' ] )->name('animal.report');
 

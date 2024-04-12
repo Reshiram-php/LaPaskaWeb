@@ -29,6 +29,9 @@ class RootPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->plugin(
+                \Hasnayeen\Themes\ThemesPlugin::make()
+            )
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -43,6 +46,7 @@ class RootPanelProvider extends PanelProvider
             ])
             ->profile()
             ->middleware([
+                \Hasnayeen\Themes\Http\Middleware\SetTheme::class,
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
                 StartSession::class,
@@ -54,7 +58,9 @@ class RootPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->authMiddleware([
+                \Hasnayeen\Themes\Http\Middleware\SetTheme::class,
                 Authenticate::class,
-            ]);
+            ])
+            ;
     }
 }

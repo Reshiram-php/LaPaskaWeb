@@ -40,7 +40,7 @@
              </div>
              <!-- title and description-->
              <h2 class="mb-2 mt-5 mt-lg-0">{{ $animal->nombre }}</h2>
-             <span class="lead">2 años de edad</span>
+             <span class="lead">{{ \Carbon\Carbon::parse($animal->fecha_nacimiento)->diff(\Carbon\Carbon::now())->format('%y años, %m meses y %d días');   }}</span>
              <p class="mt-4">
                {{ $animal->descripcion }}
              </p>

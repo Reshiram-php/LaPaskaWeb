@@ -413,7 +413,7 @@
                             <div class="p-4 pt-0 text-center adopt-wrapper">
                                 <div class="mb-3">
                                     <h3 class="h4">{{ $a->nombre }}</h3>
-                                    <span class="lead">2 años de edad</span>
+                                    <span class="lead">{{ \Carbon\Carbon::parse($a->fecha_nacimiento)->diff(\Carbon\Carbon::now())->format('%y años, %m meses y %d días');  }}</span>
                                 </div>
                                 <p>Dale la oportunidad a {{ $a->nombre }} de ser feliz con una familia cariñosa </p>
                                 <!-- button -->
@@ -491,73 +491,31 @@
         <!-- team -->
         <div class="row mt-5 gx-5">
             <!-- team member -->
+            @foreach ($voluntario as $v )
             <div class="col-xl-4 col-md-6 mb-5">
+
                 <div class="team-item bg-light rounded">
                     <div class="p-5">
                         <div class="text-center">
                             <!-- image -->
                             <img loading="lazy" class="img-fluid rounded"
-                                src="{{ asset('webassets/img/team/team1.jpg') }}"alt="">
+                                src="{{ asset('storage/'.$v->imagen) }}"alt="">
                         </div>
                         <!-- text -->
                         <div class="mb-3 mt-4">
-                            <h4>Nombre Veterinario 1</h4>
-                            <span class="lead">Veterinario</span>
+                            <h4>{{ $v->nombre }}</h4>
+                            <span class="lead">{{ $v->cargo }}</span>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore
-                            et dolore magna aliqua.</p>
                     </div>
                     <!-- /padding -->
                 </div>
                 <!-- /team-item -->
             </div>
+            @endforeach
+
             <!-- /team member ends -->
             <!-- team member -->
-            <div class="col-xl-4 col-md-6 mb-5">
-                <div class="team-item bg-light rounded">
-                    <div class="p-5">
-                        <div class="text-center">
-                            <!-- image -->
-                            <img loading="lazy" class="img-fluid rounded"
-                                src="{{ asset('webassets/img/team/team2.jpg') }}"alt="">
-                        </div>
-                        <!-- text -->
-                        <div class="mb-3 mt-4">
-                            <h4>Nombre Veterinario 2</h4>
-                            <span class="lead">Veterinaria</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore
-                            et dolore magna aliqua.</p>
-                    </div>
-                    <!-- /padding -->
-                </div>
-                <!-- /team-item -->
-            </div>
-            <!-- /team member ends -->
-            <!-- team member -->
-            <div class="col-xl-4 col-md-6 mb-5">
-                <div class="team-item bg-light rounded">
-                    <div class="p-5">
-                        <div class="text-center">
-                            <!-- image -->
-                            <img loading="lazy" class="img-fluid rounded"
-                                src="{{ asset('webassets/img/team/team3.jpg') }}"alt="">
-                        </div>
-                        <!-- text -->
-                        <div class="mb-3 mt-4">
-                            <h4>Nombre Voluntario 1</h4>
-                            <span class="lead">Voluntario</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore
-                            et dolore magna aliqua.</p>
-                    </div>
-                    <!-- /padding -->
-                </div>
-                <!-- /team-item -->
-            </div>
+
             <!-- /team member ends -->
         </div>
         <!-- /row -->

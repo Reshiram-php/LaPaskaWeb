@@ -46,36 +46,39 @@
 
                                 <div class="text-center">
                                     <!-- image -->
-                                    <a href="{{ url("/contact") }}">
-                                    <img loading="lazy" class="img-fluid rounded" src="{{ asset('storage/' . $v->imagen) }}"
-                                        alt="">
+                                    <a href="{{ url('/contact') }}">
+                                        <img loading="lazy" class="img-fluid rounded"
+                                            src="{{ asset('storage/' . $v->imagen) }}" alt="">
                                     </a>
                                 </div>
                                 <!-- text -->
                                 <div class="mb-3 mt-4">
-                                    <a href="{{ url("/contact") }}">
-                                    <h4>{{ $v->nombre }}</h4>
-                                </a>
+                                    <a href="{{ url('/contact') }}">
+                                        <h4>{{ $v->nombre }}</h4>
+                                    </a>
                                     <span class="lead text-center">$ {{ $v->precio }}</span>
 
                                 </div>
-                                <p>{{$v->descripcion}}</p>
+                                <p>{{ $v->descripcion }}</p>
                             </div>
+                        </div>
+                    </div>
                 @endforeach
 
                 <!-- /padding -->
             </div>
             <!-- /team-item -->
         </div>
-        <!-- /team member ends -->
-        <!-- team member -->
+    </div>
+    <!-- /team member ends -->
+    <!-- team member -->
 
-        <!-- /team member ends -->
+    <!-- /team member ends -->
 
-        <!-- /page-->
-        <!-- Go To Top Link -->
-        <div class="col-lg-12 text-center page-scroll">
-            <a href="#top" class="back-to-top"><i class="fa fa-angle-up"></i></a>
-        </div>
-        <!--/page-scroll-->
-    @endsection
+    <!-- /page-->
+    <!-- Go To Top Link -->
+    <div class="col-lg-12 text-center page-scroll">
+        <a href="#top" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+    </div>
+    <!--/page-scroll-->
+@endsection
