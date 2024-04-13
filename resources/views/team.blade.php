@@ -63,8 +63,14 @@
 
                                 <div class="text-center">
                                     <!-- image -->
-                                    <img loading="lazy" class="img-fluid rounded" src="{{ asset('storage/' . $v->imagen) }}"
+                                    @if ($v->imagen=="webassets/img/default-user.jpg")
+                                    <img loading="lazy" class="img-fluid rounded" src="{{ asset($v->imagen) }}"
                                         alt="">
+                                        @else
+                                        <img loading="lazy" class="img-fluid rounded" src="{{ asset('storage/' . $v->imagen) }}"
+                                        alt="">
+                                    @endif
+
                                 </div>
                                 <!-- text -->
                                 <div class="mb-3 mt-4">

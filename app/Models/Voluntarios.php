@@ -17,8 +17,7 @@ class Voluntarios extends Model
         /** @var Model $model */
         static::updating(function ($model) {
             if ($model->isDirty('imagen') && ($model->getOriginal('imagen') !== null)) {
-                if ($model->getOriginal('imagen') != "team-images/default/default-user.jpg") {
-
+                if ($model->getOriginal('imagen') != "webassets/img/default-user.jpg") {
                     Storage::disk('public')->delete($model->getOriginal('imagen'));
                 }
             }

@@ -16,7 +16,7 @@ class EditVoluntarios extends EditRecord
         $orders = $this->record;
         if ($orders->imagen == null) {
             $v = Voluntarios::findOrFail($this->record->getKey());
-            $v->imagen = "team-images/default/default-user.jpg";
+            $v->imagen = "webassets/img/default-user.jpg";
             $v->update();
         }
     }
