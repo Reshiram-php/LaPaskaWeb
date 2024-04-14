@@ -32,10 +32,10 @@ class AlimentacionesResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('animal_id')
-                ->label('Animal')
-                ->preload()
-                ->options(fn(Get $get): Collection => Animales::query()->where('estado_id','!=',3)->pluck('nombre','id') )
-                ->required(),
+                    ->label('Animal')
+                    ->preload()
+                    ->options(fn (Get $get): Collection => Animales::query()->where('estado_id', '!=', 3)->pluck('nombre', 'id'))
+                    ->required(),
                 Forms\Components\DatePicker::make('fecha_alimentacion')
                     ->required(),
                 Forms\Components\TextInput::make('alimento')
@@ -54,6 +54,8 @@ class AlimentacionesResource extends Resource
                 Tables\Columns\TextColumn::make('animal_id')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('Animales.nombre')
+                    ->sortable()->label('Nombre'),
                 Tables\Columns\TextColumn::make('fecha_alimentacion')
                     ->date()
                     ->sortable(),

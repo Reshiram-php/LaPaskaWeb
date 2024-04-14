@@ -53,9 +53,12 @@ class AdopcionesResource extends Resource
                 Tables\Columns\TextColumn::make('animal_id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('adoptante_id')
-                    ->numeric()
-                    ->sortable(),
+                    Tables\Columns\TextColumn::make('Animales.nombre')
+                    ->sortable()->label('Nombre Animal'),
+                Tables\Columns\TextColumn::make('Adoptantes.cedula')
+                    ->sortable()->label('Cédula'),
+                    Tables\Columns\TextColumn::make('Adoptantes.nombre')
+                    ->sortable()->label('Nombre Adoptante'),
                 Tables\Columns\TextColumn::make('fecha_adopcion')
                     ->date()
                     ->sortable(),

@@ -26,9 +26,11 @@ class VentaProductosResource extends Resource
             ->schema([
                 Forms\Components\DatePicker::make('fecha_venta')
                     ->required(),
-                Forms\Components\TextInput::make('producto')
-                    ->required()
-                    ->maxLength(255),
+                    Forms\Components\Select::make('producto_id')
+                    ->label('Producto')
+                    ->Relationship('Productos', 'nombre')
+                    ->preload()
+                    ->required(),
                 Forms\Components\TextInput::make('cantidad')
                     ->required()
                     ->numeric(),

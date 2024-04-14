@@ -5,6 +5,8 @@ namespace App\Filament\Resources\ApadrinamientosResource\Pages;
 use App\Filament\Resources\ApadrinamientosResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use pxlrbt\FilamentExcel\Actions\Pages\ExportAction;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
 
 class ListApadrinamientos extends ListRecords
 {
@@ -14,6 +16,8 @@ class ListApadrinamientos extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+            ExportAction::make()->exports([
+                ExcelExport::make('table')->fromTable()]),
         ];
     }
 }

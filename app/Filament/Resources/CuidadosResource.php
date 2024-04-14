@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Collection;
 
@@ -28,10 +29,10 @@ class CuidadosResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('animal_id')
-                ->label('Animal')
-                ->preload()
-                ->options(fn(Get $get): Collection => Animales::query()->where('estado_id','!=',3)->pluck('nombre','id') )
-                ->required(),
+                    ->label('Animal')
+                    ->preload()
+                    ->options(fn (Get $get): Collection => Animales::query()->where('estado_id', '!=', 3)->pluck('nombre', 'id'))
+                    ->required(),
                 Forms\Components\TextInput::make('tipo_cuidado')
                     ->required()
                     ->maxLength(255),
@@ -55,6 +56,13 @@ class CuidadosResource extends Resource
                 Tables\Columns\TextColumn::make('animal_id')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('Animales.nombre')
+                    ->sortable()->label('Nombre'),
+                    Tables\Columns\TextColumn::make('Animales')
+                    ->getStateUsing(function (Model $record) : string {
+                       return $record->animales->especies->especie;
+                    })->label('Especie'),
+
                 Tables\Columns\TextColumn::make('tipo_cuidado')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('fecha_cuidado')
