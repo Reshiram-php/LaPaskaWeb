@@ -50,7 +50,7 @@ class VentaProductosResource extends Resource
                 Tables\Columns\TextColumn::make('fecha_venta')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('producto')
+                Tables\Columns\TextColumn::make('productos.nombre')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('cantidad')
                     ->numeric()
