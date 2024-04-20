@@ -73,15 +73,16 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <h3 class="box-tittle">Cuidados</h3>
+
                             <div class="table-responsive">
 
                                 <table class="table table-bordered table-show">
+                                    <caption style="text-align:center; font-size:120%; color: #0b0b0b;">Cuidados
+                                    </caption>
                                     <thead>
                                         <tr>
                                             <th style="border-width: 1px;border: solid; border-color: #0b0b0b;">Tipo de
-                                                cuidado
-                                            </th>
+                                                cuidado</th>
                                             <th style="border-width: 1px;border: solid; border-color: #0b0b0b;">Fecha de
                                                 cuidado</th>
                                             <th style="border-width: 1px;border: solid; border-color: #0b0b0b;">
@@ -108,22 +109,28 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-
-                                    </tbody>
-                                </table>
-                                <table class="table table-bordered table-show">
-                                    <caption style="text-align:center; font-size:120%; color: #0b0b0b;">Imagen
-                                    </caption>
-
-                                    <tbody>
-
-                                            <img src="{{ public_path('storage/' . $animal->imagen[0]) }}" height="200px"
-                                                width="200px">
-
+                                        <tr>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                        <table class="table table-bordered table-show">
+                            <caption style="text-align:center; font-size:120%; color: #0b0b0b;">Imagen
+                            </caption>
+
+                            <tbody>
+
+                                <img src="{{ public_path('storage/' . $animal->imagen[0]) }}" height="200px"
+                                    width="200px">
+
+                            </tbody>
+                        </table>
+
 
 
                     </div>
