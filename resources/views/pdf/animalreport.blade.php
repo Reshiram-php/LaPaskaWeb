@@ -43,14 +43,25 @@
                                             <th>Sexo</th>
                                             <td>{{ $animal->sexo }}</td>
                                         </tr>
-                                        <tr>
-                                            <th>Castrado</th>
-                                            @if ($animal->castrado == true)
-                                                <td>Sí</td>
-                                            @else
-                                                <td>No</td>
-                                            @endif
-                                        </tr>
+                                        @if ($animal->sexo == 'hembra')
+                                            <tr>
+                                                <th>Esterilizada</th>
+                                                @if ($animal->castrado == true)
+                                                    <td>Sí</td>
+                                                @else
+                                                    <td>No</td>
+                                                @endif
+                                            </tr>
+                                        @else
+                                            <tr>
+                                                <th>Castrado</th>
+                                                @if ($animal->castrado == true)
+                                                    <td>Sí</td>
+                                                @else
+                                                    <td>No</td>
+                                                @endif
+                                            </tr>
+                                        @endif
                                         <tr>
                                             <th>Fecha de Nacimiento</th>
                                             <td>{{ $animal->fecha_nacimiento }}</td>

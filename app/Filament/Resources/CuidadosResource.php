@@ -43,7 +43,7 @@ class CuidadosResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('costo')
                     ->required()
-                    ->numeric(),
+                    ->numeric()->minValue(1),
                 Forms\Components\Toggle::make('check')
                     ->required(),
             ]);

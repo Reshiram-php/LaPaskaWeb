@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('nombre_apadrinador');
             $table->date('fecha_inicio');
             $table->date('fecha_fin')->nulleable();
-            $table->string('estado');
+            $table->decimal('valor');
+            $table->boolean('estado');
             $table->timestamps();
         });
     }

@@ -33,13 +33,13 @@ class VentaProductosResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('cantidad')
                     ->required()
-                    ->numeric(),
+                    ->numeric()->minValue(1),
                 Forms\Components\TextInput::make('precio_unitario')
                     ->required()
-                    ->numeric(),
+                    ->numeric()->minValue(0),
                 Forms\Components\TextInput::make('total')
                     ->required()
-                    ->numeric(),
+                    ->numeric()->minValue(0),
             ]);
     }
 

@@ -29,12 +29,15 @@ class DonacionesResource extends Resource
                 Forms\Components\TextInput::make('donante')
                     ->required()
                     ->maxLength(255),
+                    Forms\Components\TextInput::make('tipo_donacion')
+                    ->required()
+                    ->maxLength(255)->label('tipo de donacion'),
                 Forms\Components\Textarea::make('descripcion')
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('monto')
                     ->required()
-                    ->numeric(),
+                    ->numeric()->minValue(0),
             ]);
     }
 
@@ -47,6 +50,7 @@ class DonacionesResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('donante')
                     ->searchable(),
+                    Tables\Columns\TextColumn::make('tipo_donacion') ->sortable(),
                 Tables\Columns\TextColumn::make('monto')
                     ->numeric()
                     ->sortable(),

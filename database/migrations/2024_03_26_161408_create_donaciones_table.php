@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('fecha_donacion');
             $table->string('donante');
+            $table->string('tipo_donacion');
             $table->text('descripcion');
             $table->decimal('monto');
             $table->timestamps();

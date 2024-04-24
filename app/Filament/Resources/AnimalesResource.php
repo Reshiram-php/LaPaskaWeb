@@ -149,13 +149,13 @@ class AnimalesResource extends Resource
                     ])
                     ->required(),
                 Forms\Components\Toggle::make('castrado')
-                    ->required(),
+                    ->required()->label('castrado/esterilizada'),
                 Forms\Components\DatePicker::make('fecha_nacimiento')
                     ->format('d/m/Y')
                     ->displayFormat('d/m/Y')
                     ->required()
                     ->reactive()
-                    ->minDate(now()->subYears(150))
+                    ->minDate(now()->subYears(50))
                     ->maxDate(now())
                     ->afterStateUpdated(function (?string $state, ?string $old, Set $set) {
                         return $set('fecha_refugio', Carbon::parse($state)->toDateTimeString());
@@ -205,7 +205,7 @@ class AnimalesResource extends Resource
                 Tables\Columns\TextColumn::make('sexo')
                     ->searchable(),
                 Tables\Columns\IconColumn::make('castrado')
-                    ->boolean(),
+                    ->boolean()->label('castrado/esterilizada'),
                 Tables\Columns\TextColumn::make('fecha_nacimiento')
                     ->date()
                     ->sortable(),

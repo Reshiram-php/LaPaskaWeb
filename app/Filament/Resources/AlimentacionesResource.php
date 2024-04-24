@@ -43,7 +43,7 @@ class AlimentacionesResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('cantidad')
                     ->required()
-                    ->numeric(),
+                    ->numeric()->minValue(1),
             ]);
     }
 

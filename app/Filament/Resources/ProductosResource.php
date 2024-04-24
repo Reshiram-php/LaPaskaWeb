@@ -29,7 +29,7 @@ class ProductosResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('precio')
                     ->required()
-                    ->numeric(),
+                    ->numeric()->minValue(0),
                     Forms\Components\FileUpload::make('imagen')
                     ->image()
                     ->directory('product-images')

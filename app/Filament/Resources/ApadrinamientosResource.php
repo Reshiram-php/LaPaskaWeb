@@ -43,9 +43,11 @@ class ApadrinamientosResource extends Resource
                     ->required(),
                 Forms\Components\DatePicker::make('fecha_fin')
                     ->required(),
-                Forms\Components\TextInput::make('estado')
+                    Forms\Components\TextInput::make('valor')
                     ->required()
-                    ->maxLength(255),
+                    ->numeric()->label('monto')->minValue(0),
+                    Forms\Components\Toggle::make('estado')
+                    ->required()->label('¿apadrinamiento activo?'),
             ]);
     }
 
@@ -64,8 +66,11 @@ class ApadrinamientosResource extends Resource
                 Tables\Columns\TextColumn::make('fecha_fin')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('estado')
-                    ->searchable(),
+                    Tables\Columns\TextColumn::make('valor')
+                    ->numeric()
+                    ->sortable()->label('monto'),
+                    Tables\Columns\IconColumn::make('estado')
+                    ->boolean()->label('activo'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
