@@ -151,7 +151,6 @@ class AnimalesResource extends Resource
                 Forms\Components\Toggle::make('castrado')
                     ->required()->label('castrado/esterilizada'),
                 Forms\Components\DatePicker::make('fecha_nacimiento')
-                    ->format('d/m/Y')
                     ->displayFormat('d/m/Y')
                     ->required()
                     ->reactive()
