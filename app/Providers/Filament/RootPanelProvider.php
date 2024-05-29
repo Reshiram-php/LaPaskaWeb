@@ -29,6 +29,7 @@ class RootPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->passwordReset()
             ->plugin(
                 \Hasnayeen\Themes\ThemesPlugin::make()
             )
