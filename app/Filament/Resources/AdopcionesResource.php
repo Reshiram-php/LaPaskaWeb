@@ -15,6 +15,7 @@ use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -39,7 +40,7 @@ class AdopcionesResource extends Resource
                 ->options(fn(Get $get): Collection => Animales::query()->where('estado_id',1)->orWhere('id',$get('animal_id'))->pluck('nombre','id') )
                 ->required(),
                 Forms\Components\Select::make('adoptante_id')
-                ->Relationship('Adoptantes','cedula')
+                ->Relationship('Adoptantes','nombre')
                 ->required(),
                 Forms\Components\DatePicker::make('fecha_adopcion')
                     ->required(),
@@ -76,6 +77,8 @@ class AdopcionesResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Action::make('pdf')
+                ->icon('heroicon-o-arrow-down-tray')->url(fn(Adopciones $record)=>route('animal.adopt',$record))->openUrlInNewTab(),
 
             ])
             ->bulkActions([

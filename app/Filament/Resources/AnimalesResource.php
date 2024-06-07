@@ -149,8 +149,9 @@ class AnimalesResource extends Resource
                     ])
                     ->required(),
                 Forms\Components\Toggle::make('castrado')
-                    ->required()->label('castrado/esterilizada'),
+                    ->required()->label('Castrado/Esterilizada'),
                 Forms\Components\DatePicker::make('fecha_nacimiento')
+                    ->label('Fecha aproximada de nacimiento')
                     ->displayFormat('d/m/Y')
                     ->required()
                     ->reactive()
@@ -188,8 +189,8 @@ class AnimalesResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')
-                ->numeric()
-                ->sortable(),
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('nombre')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('Estados.estado')
@@ -226,7 +227,7 @@ class AnimalesResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Action::make('pdf')
-                ->icon('heroicon-o-arrow-down-tray')->url(fn(Animales $record)=>route('animal.report',$record))->openUrlInNewTab(),
+                    ->icon('heroicon-o-arrow-down-tray')->url(fn (Animales $record) => route('animal.report', $record))->openUrlInNewTab(),
             ])
 
             ->bulkActions([
