@@ -38,6 +38,7 @@ use Illuminate\Support\Collection;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportAction;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 use pxlrbt\FilamentExcel\Exports\ExcelExport;
+use Illuminate\Support\Facades\File;
 
 class AnimalesResource extends Resource
 {
@@ -232,7 +233,16 @@ class AnimalesResource extends Resource
 
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()->after(function (Collection $record){
+                        foreach($record as $r){
+                            foreach ($r->imagen as $image) {
+                                if (File::exists('storage/' . $image)) {
+                                    File::delete('storage/' . $image);
+                               }
+                           }
+                        }
+
+                    }),
                 ]),
             ]);
     }

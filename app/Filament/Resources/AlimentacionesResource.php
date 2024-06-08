@@ -6,6 +6,7 @@ use App\Filament\Resources\AlimentacionesResource\Pages;
 use App\Filament\Resources\AlimentacionesResource\RelationManagers;
 use App\Models\Alimentaciones;
 use App\Models\Animales;
+use App\Models\Event;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
@@ -81,7 +82,12 @@ class AlimentacionesResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()->after(function (Collection $record) {
+                        foreach ($record as $r) {
+                            $event = Event::where('alimentacion_id', $r->id)->first();
+                            $event->delete();
+                        }
+                    }),
                 ]),
             ]);
     }

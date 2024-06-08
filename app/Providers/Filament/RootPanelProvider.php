@@ -17,6 +17,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Saade\FilamentFullCalendar\FilamentFullCalendarPlugin;
 
 class RootPanelProvider extends PanelProvider
 {
@@ -43,7 +44,7 @@ class RootPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
+
             ])
             ->profile()
             ->middleware([
@@ -62,6 +63,9 @@ class RootPanelProvider extends PanelProvider
                 \Hasnayeen\Themes\Http\Middleware\SetTheme::class,
                 Authenticate::class,
             ])
+            ->plugin(
+                FilamentFullCalendarPlugin::make()
+            );
             ;
     }
 }

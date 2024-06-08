@@ -6,6 +6,7 @@ use App\Filament\Resources\CuidadosResource\Pages;
 use App\Filament\Resources\CuidadosResource\RelationManagers;
 use App\Models\Animales;
 use App\Models\Cuidados;
+use App\Models\Event;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
@@ -58,9 +59,9 @@ class CuidadosResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('Animales.nombre')
                     ->sortable()->label('Nombre'),
-                    Tables\Columns\TextColumn::make('Animales')
-                    ->getStateUsing(function (Model $record) : string {
-                       return $record->animales->especies->especie;
+                Tables\Columns\TextColumn::make('Animales')
+                    ->getStateUsing(function (Model $record): string {
+                        return $record->animales->especies->especie;
                     })->label('Especie'),
 
                 Tables\Columns\TextColumn::make('tipo_cuidado')
@@ -92,7 +93,12 @@ class CuidadosResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()->after(function (Collection $record) {
+                        foreach ($record as $r) {
+                            $event = Event::where('cuidado_id', $r->id)->first();
+                            $event->delete();
+                        }
+                    }),
                 ]),
             ]);
     }
