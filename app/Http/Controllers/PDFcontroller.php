@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 
 class PDFcontroller extends Controller
 {
+    public function __construct() {
+        $this->middleware(['role:Admin']);
+      }
+
     public function animalreport($id)
     {
         $animal = Animales::join('especies', 'especies.id', '=', 'animales.especie_id')->join('razas','razas.id','=','animales.raza_id')->where('animales.id', $id)->first();

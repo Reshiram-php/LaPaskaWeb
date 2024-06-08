@@ -227,7 +227,7 @@ class AnimalesResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Action::make('pdf')
-                    ->icon('heroicon-o-arrow-down-tray')->url(fn (Animales $record) => route('animal.report', $record))->openUrlInNewTab(),
+                    ->icon('heroicon-o-arrow-down-tray')->url(fn (Animales $record) => route('animal.report', $record))->openUrlInNewTab()->hidden(! auth()->user()->hasRole('Admin')),
             ])
 
             ->bulkActions([

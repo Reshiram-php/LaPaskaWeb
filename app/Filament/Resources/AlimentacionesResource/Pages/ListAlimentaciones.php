@@ -17,7 +17,7 @@ class ListAlimentaciones extends ListRecords
         return [
             Actions\CreateAction::make(),
             ExportAction::make()->exports([
-                ExcelExport::make('table')->fromTable()]),
+                ExcelExport::make('table')->fromTable()])->hidden(! auth()->user()->hasRole('Admin')),
         ];
     }
 }
