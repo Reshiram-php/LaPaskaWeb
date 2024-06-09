@@ -24,7 +24,7 @@ composer install
 APP_NAME=Laravel
 APP_ENV=local
 APP_KEY=base64:hv51yrHoR6eXacvHMObHhZPbF4qoH5r7knOfLHm/Z0I=
-APP_DEBUG=true
+APP_DEBUG=false
 APP_URL=http://localhost/
 
 LOG_CHANNEL=stack
