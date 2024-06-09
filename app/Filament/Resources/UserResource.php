@@ -24,18 +24,18 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('name')->label('Nombre')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('email')
+                Forms\Components\TextInput::make('email')->label('Correo')
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('password')
+                Forms\Components\TextInput::make('password')->label('Contraseña')
                     ->password()
                     ->required()
                     ->maxLength(255),
-                    Forms\Components\Select::make('rol')->relationship('roles','name'),
+                    Forms\Components\Select::make('rol')->relationship('roles','name')->required(),
             ]);
     }
 
@@ -43,9 +43,9 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('name')->label('nombre')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('email')
+                Tables\Columns\TextColumn::make('email')->label('correo')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

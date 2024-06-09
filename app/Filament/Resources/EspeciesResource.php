@@ -29,7 +29,7 @@ class EspeciesResource extends Resource
                 Forms\Components\TextInput::make('especie')
                     ->required()
                     ->maxLength(255),
-                    ToggleButtons::make('icon')
+                    ToggleButtons::make('icon')->label('Icono')
                     ->options([
                         'fas-dog'=>'',
                         'fas-cat'=>'',

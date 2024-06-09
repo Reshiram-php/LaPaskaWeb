@@ -25,7 +25,7 @@ class CreateAlimentaciones extends CreateRecord
         $event->tipo = false;
         $event->start = $data['fecha_alimentacion'];
         $event->end = $data['fecha_alimentacion'];
-        $event->cuidado_id = $record->id;
+        $event->alimentacion_id = $record->id;
         // Assuming 'student_id' is the foreign key linking to students
 
         // Save the Guardian model to insert the data

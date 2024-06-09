@@ -74,8 +74,8 @@ class CuidadosResource extends Resource
                 Tables\Columns\TextColumn::make('costo')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\IconColumn::make('check')
-                    ->boolean(),
+                Tables\Columns\ToggleColumn::make('check')
+                    ,
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

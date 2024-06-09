@@ -62,7 +62,7 @@ class AnimalesResource extends Resource
                     ->createOptionForm([
                         Forms\Components\TextInput::make('especie')
                             ->required(),
-                        ToggleButtons::make('icon')
+                        ToggleButtons::make('icon')->label('Icono')
                             ->options([
                                 'fas-dog' => '',
                                 'fas-cat' => '',

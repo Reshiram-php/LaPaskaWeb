@@ -6,6 +6,7 @@ use App\Filament\Resources\RazasResource\Pages;
 use App\Filament\Resources\RazasResource\RelationManagers;
 use App\Models\Razas;
 use Filament\Forms;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -35,6 +36,54 @@ class RazasResource extends Resource
                     ->createOptionForm([
                         Forms\Components\TextInput::make('especie')
                             ->required(),
+                        ToggleButtons::make('icon')->label('Icono')
+                            ->options([
+                                'fas-dog' => '',
+                                'fas-cat' => '',
+                                'fas-bat' => '',
+                                'fas-bird' => '',
+                                'fas-cow' => '',
+                                'fas-crab' => '',
+                                'fas-deer' => '',
+                                'fas-duck' => '',
+                                'fas-fish-fins' => '',
+                                'fas-frog' => '',
+                                'fas-horse' => '',
+                                'fas-monkey' => '',
+                                'fas-mouse-field' => '',
+                                'fas-pig' => '',
+                                'fas-rabbit' => '',
+                                'fas-raccoon' => '',
+                                'fas-sheep' => '',
+                                'fas-snake' => '',
+                                'fas-spider' => '',
+                                'fas-squirrel' => '',
+                                'fas-turtle' => ''
+                            ])
+                            ->icons([
+                                'fas-dog' => 'fas-dog',
+                                'fas-cat' => 'fas-cat',
+                                'fas-bat' => 'fas-bat',
+                                'fas-bird' => 'fas-bird',
+                                'fas-cow' => 'fas-cow',
+                                'fas-crab' => 'fas-crab',
+                                'fas-deer' => 'fas-deer',
+                                'fas-duck' => 'fas-duck',
+                                'fas-fish-fins' => 'fas-fish-fins',
+                                'fas-frog' => 'fas-frog',
+                                'fas-horse' => 'fas-horse',
+                                'fas-monkey' => 'fas-monkey',
+                                'fas-mouse-field' => 'fas-mouse-field',
+                                'fas-pig' => 'fas-pig',
+                                'fas-rabbit' => 'fas-rabbit',
+                                'fas-raccoon' => 'fas-raccoon',
+                                'fas-sheep' => 'fas-sheep',
+                                'fas-snake' => 'fas-snake',
+                                'fas-spider' => 'fas-spider',
+                                'fas-squirrel' => 'fas-squirrel',
+                                'fas-turtle' => 'fas-turtle'
+                            ])
+                            ->inline()
                     ]),
                 Forms\Components\TextInput::make('raza')
                     ->required()
